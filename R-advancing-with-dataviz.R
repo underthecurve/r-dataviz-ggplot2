@@ -9,7 +9,7 @@
 ## By Christine Zhang (@christinezhang on Twitter; ychristinezhang at gmail dot com)
 
 # Link to annotated code: 
-# xxxxx (markdown file for viewing on the web)
+# https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/R-advancing-with-dataviz.md (markdown file for viewing on the web)
 # xxxxx (pdf file for printing out)
 
 # Before starting, ensure this .R file and the following data file are in the same folder:
