@@ -56,10 +56,16 @@ drivers.plot + geom_point() + ggtitle('Drivers Killed by Year')
 # These produce the exact same plot:
 qplot(data = ts, x = Year, y = DriversKilled, main = 'Drivers Killed by Year')
 
+drivers.plot + 
+  geom_text(aes(label = Month)) 
+
 ggplot(data = ts, 
        aes(x = Year, y = DriversKilled)) + 
   geom_point() + 
   ggtitle('Drivers Killed by Year') 
+
+drivers.plot + 
+  geom_text(aes(label = Month)) 
 
 #### Life expectancy by country, 2000 to 2015 ####
 
@@ -253,4 +259,4 @@ p + coord_flip()
 # 
 # - What other visualizations could you make using the `gapminder` dataset?
 # 
-# - What are some other customizations of `ggplot2` plots would you like to see that we haven't covered today (additional resources are the GitHub repo)
+# - What are some other customizations of `ggplot2` plots would you like to see that we haven't covered today (additional resources are in the GitHub repo: https://github.com/underthecurve/r-dataviz-ggplot2)

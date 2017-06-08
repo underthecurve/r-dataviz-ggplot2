@@ -95,13 +95,22 @@ drivers.plot + geom_point() # adding geometry layer
 
 The simplest form of a `ggplot()` graphic is one that has a ggplot object, with an added geometry layer. `data =` and `aes()` are the data and aesthetics mappings that tell R what data to plot and how.
 
+Instead of `geom_point()` we could use `geom_text()`
+
+``` r
+drivers.plot + 
+  geom_text(aes(label = Month))
+```
+
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-7-1.png)
+
 We can add a title by adding a `ggtitle()` layer.
 
 ``` r
 drivers.plot + geom_point() + ggtitle('Drivers Killed by Year')
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-7-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
 A common practice to simplify the code is to save the `ggplot()` object as a separate R object, as we did above by creating `drivers.plot`. Then, we can add layers onto this object. We'll do this occasionally throughout this workshop.
 
@@ -112,7 +121,7 @@ Let's review `qplot()` and `ggplot()`:
 qplot(data = ts, x = Year, y = DriversKilled, main = 'Drivers Killed by Year')
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
 ``` r
 ggplot(data = ts, 
@@ -121,7 +130,7 @@ ggplot(data = ts,
   ggtitle('Drivers Killed by Year') 
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-8-2.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-9-2.png)
 
 So the full form, `ggplot()`, is a lot more verbose than `qplot()`. But it is cleaner and allows for greater customization.
 
@@ -193,7 +202,7 @@ ggplot(life.usa, aes(x = male, y = female)) +
   geom_point() 
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-13-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-14-1.png)
 
 ### Line plots
 
@@ -205,7 +214,7 @@ ggplot(life.usa, aes(x = male, y = female)) +
   geom_line()
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-14-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-15-1.png)
 
 This is line that connects the points. But we might want to draw a fitted line instead. We can do this using the `geom_smooth()` layer rather than `geom_line()`:
 
@@ -217,7 +226,7 @@ ggplot(life.usa, aes(x = male, y = female)) +
 
     ## `geom_smooth()` using method = 'loess'
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-15-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-16-1.png)
 
 `geom_smooth()` by default uses a method called loess (local regression) to create the fitted curve. A more straightforward method for this data would be a straight-line, or a linear model. This is done using `method = lm` within the `geom_smooth()` layer. Also, you may have noticed a thin grey band around the line, the 95% confidence interval. We can remove this by setting `se = F` within `geom_smooth()`:
 
@@ -227,7 +236,7 @@ ggplot(life.usa, aes(x = male, y = female)) +
   geom_smooth(method = 'lm', se = F)
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-16-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-17-1.png)
 
 Now let's go back to the `life` dataframe of all countries. What if we wanted to plot the total (both sexes) life expectancy for every country by year?
 
@@ -236,7 +245,7 @@ ggplot(life, aes(x = year, y = both.sexes)) +
   geom_point()
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-17-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-18-1.png)
 
 Let's fit a line for each country.
 
@@ -246,7 +255,7 @@ ggplot(life, aes(x = year, y = both.sexes)) +
   geom_line() # what if I had run geom_smooth() instead?
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-18-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-19-1.png)
 
 **Why didn't that work correctly?**
 
@@ -256,7 +265,7 @@ ggplot(life, aes(x = year, y = both.sexes, group = country)) +
   geom_line() 
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-19-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-20-1.png)
 
 The grey bands are standard error bands. In this case, they can be distracting, so we can remove them by setting `se = FALSE` in the `geom_smooth()` layer.
 
@@ -266,7 +275,7 @@ ggplot(life, aes(x = year, y = both.sexes, group = country)) +
   geom_line() 
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-20-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-21-1.png)
 
 ### Facetted plots
 
@@ -278,7 +287,7 @@ ggplot(life, aes(x = year, y = both.sexes, group = country)) +
   facet_wrap(~ country)
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-21-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-22-1.png)
 
 What do we see in this plot (the zoomed in one on RStudio, not the one you actually see above) that we can't see in the one before it? Note you wouldn't publish the above graph, but it's useful as an exploratory exercise.
 
@@ -299,7 +308,7 @@ ggplot(data = americas, aes(x = both.sexes, y = country)) +
   geom_point()
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-23-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-24-1.png)
 
 **Why didn't I put the countries on the x-axis?**
 
@@ -422,7 +431,7 @@ ggplot(data = americas, aes(x = both.sexes, y = country.factor.reorder)) +
   geom_point()
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-28-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-29-1.png)
 
 To save time (and once you're more familiar with factors and the `forcats` library), you can type `y = fct_reorder(country.factor, both.sexes)` within the `ggplot()` object itself.
 
@@ -435,7 +444,7 @@ p <- ggplot(data = americas, aes(x = both.sexes, y = fct_reorder(country.factor,
 p
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-29-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-30-1.png)
 
 **Why didn't we need the dollar signs (e.g., `fct_reorder(americas$country.factor, americas$both.sexes)` this time)?**
 
@@ -447,7 +456,7 @@ We can change the x-axis and y-axis titles using the `labs()` layer:
 p + labs(x = 'Life expectancy at birth in 2015, years', y = '')
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-30-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-31-1.png)
 
 We can change the scale of the x-axis by adding a `scale_x_continuous()` layer. Let's say we want the x-axis to start at 50 and go to 100. We do this using `limits = c(60, 100)` within `scale_x_continuous()`:
 
@@ -455,7 +464,7 @@ We can change the scale of the x-axis by adding a `scale_x_continuous()` layer. 
 p + labs(x = 'Life expectancy at birth in 2015, years', y = '') + scale_x_continuous(limits = c(50, 100))
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-31-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-32-1.png)
 
 That doesn't look too great. Let's set `limits = c(60, 85)` instead.
 
@@ -467,7 +476,7 @@ p + labs(x = 'Life expectancy at birth in 2015, years', y = '') +
                      breaks = seq(from = 60, to = 85, by = 5)) # x-axis labels
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-32-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-33-1.png)
 
 Maybe we want to remove the minor breaks, too. Let's go ahead and do that, as well as adding a title using the `ggtitle()` layer saving the plot as an R object called `plot1`:
 
@@ -482,7 +491,7 @@ plot1 <- p + labs(x = 'Life expectancy at birth in 2015, years', y = '') +
 plot1
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-33-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-34-1.png)
 
 ### Adjusting themes/appearance
 
@@ -497,7 +506,7 @@ library('ggthemes') # load the ggthemes pacakge
 plot1 + theme_few()
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-34-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-35-1.png)
 
 The above themes are pre-made themes. You can also do some customization with the `theme()` layer. For example,
 
@@ -505,9 +514,9 @@ The above themes are pre-made themes. You can also do some customization with th
 plot1 + theme(panel.background = element_blank())
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-35-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-36-1.png)
 
-The `theme` layer can be a bit tricky to figure out. Take a look at the "Theme elements" section of [this page](https://rstudio-pubs-static.s3.amazonaws.com/3364_d1a578f521174152b46b19d0c83cbe7e.html) to figure out the different parts.
+The `theme()` layer can be a bit tricky to figure out. Take a look at the "Theme elements" section of [this page](https://rstudio-pubs-static.s3.amazonaws.com/3364_d1a578f521174152b46b19d0c83cbe7e.html) to figure out the different parts.
 
 ### Saving a plot
 
@@ -557,7 +566,7 @@ p <- ggplot(data = gapminder %>% filter(year == 2007), aes(x = gdpPercap, y = li
 p
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-38-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-39-1.png)
 
 What if we wanted the size of the points to be equal to the population? We can use the size attribute in the `aes()` mapping function to do this.
 
@@ -574,13 +583,13 @@ We accomplish this by adding a `scale_size_area()` layer.
 p
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-40-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-41-1.png)
 
 ``` r
 p + scale_size_area()
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-40-2.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-41-2.png)
 
 We could also color the plots according to continent by using the `color` attribute in the `aes()` function.
 
@@ -591,7 +600,7 @@ p <- ggplot(data = gapminder %>% filter(year == 2007), aes(x = gdpPercap, y = li
 p + scale_size_area()
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-41-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-42-1.png)
 
 **What if we just wanted the colors of the points to be, say, blue rather than mapped to the `continent` variable?**
 
@@ -602,7 +611,7 @@ p <- ggplot(data = gapminder %>% filter(year == 2007), aes(x = gdpPercap, y = li
 p + scale_size_area(max_size = 10) # max_size = 10 sets the maximum size of the points (in this case, it makes them larger)
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-42-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-43-1.png)
 
 The difference between putting `color = ___` inside or outside of the `aes()` function is that placing it inside makes the color an aesthetic mapping—that is, a color *based on* another variable in the data (in our case, the `continent` variable), and placing int outside makes the color a value in its own right, not tied to a variable in the data (in our case, 'blue'). \[Here\]\](<http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf>) are some more colors in R. Note I added `max_size = 10` in order to make all the points a little bigger.
 
@@ -618,7 +627,7 @@ Sometimes it's nice to put the legend at the bottom rather than on the right, wh
 p + scale_size_area(max_size = 10) + theme(legend.position = 'bottom')
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-43-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-44-1.png)
 
 In this case, I think the legend should actually go inside the plot, in the bottom right hand corner, since I have some empty space there. **Can you use [this page](https://rpubs.com/folias/A-simple-example-on-ggplot2-legend-options) to figure out how to do this?**
 
@@ -646,14 +655,14 @@ ggplot(data = americas, aes(x = country.factor)) +
   geom_bar()
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-45-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-46-1.png)
 
 ``` r
 ggplot(data = americas, aes(x = country.factor, y = both.sexes)) +
   geom_bar(stat = 'identity')
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-45-2.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-46-2.png)
 
 In order for the heights of the bars to represent values in the data, we need to either specify `stat = 'identity'` within the `geom_bar()` layer, or, better yet, just use `geom_col()`.
 
@@ -668,7 +677,7 @@ We can flip the coordinates by adding `coord_flip()` as a layer:
 p + coord_flip()
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-47-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-48-1.png)
 
 **Exercise: reorder the bars by life expectancy from highest to lowest using the `fct_reorder()` function in the `forcats` package**
 
@@ -678,4 +687,4 @@ p + coord_flip()
 
 -   What other visualizations could you make using the `gapminder` dataset?
 
--   What are some other customizations of `ggplot2` plots would you like to see that we haven't covered today (additional resources are the GitHub repo)
+-   What are some other customizations of `ggplot2` plots would you like to see that we haven't covered today (additional resources are in the GitHub repo: <https://github.com/underthecurve/r-dataviz-ggplot2>)
