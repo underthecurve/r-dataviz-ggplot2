@@ -1,0 +1,6 @@
+.Rhistory
+purl.R
+*.Rmd
+lifeexp_countries.csv
+lifeexp_regions.csv
+lifeexp_cleaning.R
