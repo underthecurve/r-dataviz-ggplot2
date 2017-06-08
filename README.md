@@ -11,7 +11,7 @@ Data + Code for "Advancing with data visualization in R using `ggplot2`" at the 
 
 ### Annotated code and step-by step instructions for the workshop
 * [R-advancing-with-dataviz.md](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/R-advancing-with-dataviz.md): Markdown file (for viewing on the web)
-* [R-advancing-with-dataviz.pdf](xxxxxx): PDF file (for printing out)
+* [R-advancing-with-dataviz.pdf](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/R-advancing-with-dataviz.pdf): PDF file (for printing out)
 
 ### R code
 * [R-advancing-with-dataviz.R](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/R-advancing-with-dataviz.R): the R code, which can be run in RStudio
