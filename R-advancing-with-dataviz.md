@@ -24,7 +24,7 @@ In this workshop, we will:
 First, let's load the `ggplot2` package.
 
 ``` r
-# install.packages('ggplot') # if you don't already have ggplot2
+# install.packages('ggplot2') # if you don't already have ggplot2
 library('ggplot2') # load the ggplot2 package
 ```
 
@@ -131,7 +131,7 @@ To see what I mean, let's move on to a real-life dataset that showcases some mor
 
 Let's load in a dataset of life expectancy by country (and the global average) between 2000 and 2015, downloaded from the [World Health Organization](http://apps.who.int/gho/data/view.main.SDG2016LEXv?lang=en).
 
-Note the use of `stringsAsFactors = F` here inside the `read.csv()` function. We'll come back to factors later (or if you really want, feel free to read a short essay/rant about it [here](https://simplystatistics.org/2015/07/24/stringsasfactors-an-unauthorized-biography/)), but try running the code without this argument and seeing what happens.
+Note the use of `stringsAsFactors = F` here inside the `read.csv()` function. We'll come back to factors later (or if you really want, feel free to read a short essay/rant about it [here](https://simplystatistics.org/2015/07/24/stringsasfactors-an-unauthorized-biography/)), but try running the code without this argument and see what happens.
 
 ``` r
 life <- read.csv('life.csv', stringsAsFactors = F)
@@ -435,7 +435,9 @@ p <- ggplot(data = americas, aes(x = both.sexes, y = fct_reorder(country.factor,
 p
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-29-1.png) **Why didn't we need the dollar signs (e.g., `fct_reorder(americas$country.factor, americas$both.sexes)` this time)?**
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-29-1.png)
+
+**Why didn't we need the dollar signs (e.g., `fct_reorder(americas$country.factor, americas$both.sexes)` this time)?**
 
 ### Axes labels and scales
 
@@ -497,6 +499,16 @@ plot1 + theme_few()
 
 ![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-34-1.png)
 
+The above themes are pre-made themes. You can also do some customization with the `theme()` layer. For example,
+
+``` r
+plot1 + theme(panel.background = element_blank())
+```
+
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-35-1.png)
+
+The `theme` layer can be a bit tricky to figure out. Take a look at the "Theme elements" section of [this page](https://rstudio-pubs-static.s3.amazonaws.com/3364_d1a578f521174152b46b19d0c83cbe7e.html) to figure out the different parts.
+
 ### Saving a plot
 
 Finally, we can save the plot using `ggsave()`:
@@ -511,7 +523,7 @@ ggsave('plot1.png', plot1 + theme_few())
 ggsave('plot1.png', plot1 + theme_few(), width = 8, height = 6)
 ```
 
-### Other attributes of ggplot: sizes, scales, and colors
+### Other attributes of ggplot: sizes, scales, colors
 
 Let's use the `gapminder` package to load in a different slice of the life expectancy data, GDP per capita, and population by country. Find out more about Gapminder [here](http://www.gapminder.org/data/) and if you haven't seen it already, take some time to watch founder Hans Rosling's TED talk, ["The best stats you've ever seen"](https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen).
 
@@ -545,7 +557,7 @@ p <- ggplot(data = gapminder %>% filter(year == 2007), aes(x = gdpPercap, y = li
 p
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-37-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-38-1.png)
 
 What if we wanted the size of the points to be equal to the population? We can use the size attribute in the `aes()` mapping function to do this.
 
@@ -554,7 +566,7 @@ p <- ggplot(data = gapminder %>% filter(year == 2007), aes(x = gdpPercap, y = li
   geom_point(aes(size = pop))
 ```
 
-An additional layer is required here, since we tend to perceive the size of points by area and not radius. Say we have cirlce 1 and circle 2. We want circle 2 to be twice as big as circle 1. In order to achieve this, we would want circle 2's *area* to be double the area of circle 2. If we set circle 2's *radius* to be twice as large, the area would be four times the area of circle 2 (since the area of a circle is proportional to the squared radius via π \* r^2).
+An additional layer is required here, since we tend to perceive the size of points by area and not radius. Say we have cirlce 1 and circle 2. We want circle 2 to be twice as big as circle 1. In order to achieve this, we would want circle 2's *area* to be double the area of circle 2. If we set circle 2's *radius* to be twice as large, the area would be four times the area of circle 2 (since the area of a circle is proportional to the squared radius via pi \* r^2).
 
 We accomplish this by adding a `scale_size_area()` layer.
 
@@ -562,13 +574,13 @@ We accomplish this by adding a `scale_size_area()` layer.
 p
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-39-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-40-1.png)
 
 ``` r
 p + scale_size_area()
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-39-2.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-40-2.png)
 
 We could also color the plots according to continent by using the `color` attribute in the `aes()` function.
 
@@ -579,7 +591,7 @@ p <- ggplot(data = gapminder %>% filter(year == 2007), aes(x = gdpPercap, y = li
 p + scale_size_area()
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-40-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-41-1.png)
 
 **What if we just wanted the colors of the points to be, say, blue rather than mapped to the `continent` variable?**
 
@@ -587,12 +599,30 @@ p + scale_size_area()
 p <- ggplot(data = gapminder %>% filter(year == 2007), aes(x = gdpPercap, y = lifeExp)) +
   geom_point(aes(size = pop), color = 'blue')
 
-p + scale_size_area() 
+p + scale_size_area(max_size = 10) # max_size = 10 sets the maximum size of the points (in this case, it makes them larger)
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-41-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-42-1.png)
 
-The difference between putting `color = ___` inside or outside of the `aes()` function is that placing it inside makes the color an aesthetic mapping—that is, a color *based on* another variable in the data (in our case, the `continent` variable), and placing int outside makes the color a value in its own right, not tied to a variable in the data (in our case, 'blue'). \[Here\]\](<http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf>) are some more colors in R.
+The difference between putting `color = ___` inside or outside of the `aes()` function is that placing it inside makes the color an aesthetic mapping—that is, a color *based on* another variable in the data (in our case, the `continent` variable), and placing int outside makes the color a value in its own right, not tied to a variable in the data (in our case, 'blue'). \[Here\]\](<http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf>) are some more colors in R. Note I added `max_size = 10` in order to make all the points a little bigger.
+
+### The legend
+
+Earlier, we talked about the `theme()` layer. Customizing the legend requires making additions to the `theme()` layer.
+
+Take a look [here](https://rstudio-pubs-static.s3.amazonaws.com/3364_d1a578f521174152b46b19d0c83cbe7e.html) and see if you can figure out how to rename the legend "population" rather than "pop."
+
+Sometimes it's nice to put the legend at the bottom rather than on the right, which is the default. This is another thing you can do within `theme()`:
+
+``` r
+p + scale_size_area(max_size = 10) + theme(legend.position = 'bottom')
+```
+
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-43-1.png)
+
+In this case, I think the legend should actually go inside the plot, in the bottom right hand corner, since I have some empty space there. **Can you use [this page](https://rpubs.com/folias/A-simple-example-on-ggplot2-legend-options) to figure out how to do this?**
+
+**Exercise: try to figure out how to make the population variable show up in non-scientific notation**
 
 ### Bar plots
 
@@ -616,14 +646,14 @@ ggplot(data = americas, aes(x = country.factor)) +
   geom_bar()
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-43-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-45-1.png)
 
 ``` r
 ggplot(data = americas, aes(x = country.factor, y = both.sexes)) +
   geom_bar(stat = 'identity')
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-43-2.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-45-2.png)
 
 In order for the heights of the bars to represent values in the data, we need to either specify `stat = 'identity'` within the `geom_bar()` layer, or, better yet, just use `geom_col()`.
 
@@ -638,9 +668,9 @@ We can flip the coordinates by adding `coord_flip()` as a layer:
 p + coord_flip()
 ```
 
-![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-45-1.png)
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-47-1.png)
 
-**Exercise: reorder the bars by life expectancy from highest to lowest using the `fct_reorder` function in `forcats`**
+**Exercise: reorder the bars by life expectancy from highest to lowest using the `fct_reorder()` function in the `forcats` package**
 
 ### What else?
 

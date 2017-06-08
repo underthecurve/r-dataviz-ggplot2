@@ -26,7 +26,7 @@
 # - Explore advanced features of `ggplot2`
 # - Learn to export graphics for publication
 
-# install.packages('ggplot') # if you don't already have ggplot2
+# install.packages('ggplot2') # if you don't already have ggplot2
 library('ggplot2') # load the ggplot2 package
 
 #### The syntax of `ggplot2` ####
@@ -155,12 +155,10 @@ p + labs(x = 'Life expectancy at birth in 2015, years', y = '')
 
 p + labs(x = 'Life expectancy at birth in 2015, years', y = '') + scale_x_continuous(limits = c(50, 100))
 
-## ------------------------------------------------------------------------
 p + labs(x = 'Life expectancy at birth in 2015, years', y = '') + 
   scale_x_continuous(limits = c(60, 85), # minimum and maximum for the x-axis 
                      breaks = seq(from = 60, to = 85, by = 5)) # x-axis labels
 
-## ------------------------------------------------------------------------
 # ?scale_x_continuous()
 plot1 <- p + labs(x = 'Life expectancy at birth in 2015, years', y = '') + 
   scale_x_continuous(limits = c(60, 85),  # minimum and maximum for the x-axis 
@@ -176,6 +174,10 @@ plot1
 # install.packages('ggthemes') # if you don't already have ggthemes
 library('ggthemes') # load the ggthemes pacakge
 plot1 + theme_few()
+
+# see https://rstudio-pubs-static.s3.amazonaws.com/3364_d1a578f521174152b46b19d0c83cbe7e.html ("Theme elements" section)
+
+plot1 + theme(panel.background = element_blank())
 
 #### Saving a plot ####
 
@@ -211,7 +213,17 @@ p + scale_size_area()
 p <- ggplot(data = gapminder %>% filter(year == 2007), aes(x = gdpPercap, y = lifeExp)) +
   geom_point(aes(size = pop), color = 'blue')
 
-p + scale_size_area() 
+p + scale_size_area(max_size = 10) # max_size = 10 sets the maximum size of the points (in this case, it makes them larger)
+
+#### The legend ####
+
+p + scale_size_area(max_size = 10) + theme(legend.position = 'bottom')
+
+## In this case, I think the legend should actually go inside the plot, in the bottom right hand corner, since I have some empty space there. 
+
+## Can you use this page: https://rpubs.com/folias/A-simple-example-on-ggplot2-legend-options to figure out how to do this?
+  
+## Exercise: try to figure out how to make the population variable show up in non-scientific notation
 
 #### Bar plots ####
 
