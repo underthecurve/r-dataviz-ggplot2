@@ -237,11 +237,12 @@ ggplot(data = americas, aes(x = country.factor, y = both.sexes)) +
  geom_bar()
 
 # Why didn't this work?
-# Try this: 
-# also try ?geom_bar()
+# Try this:
 
 ggplot(data = americas, aes(x = country.factor)) +
   geom_bar()
+
+# try ?geom_bar()
 
 ggplot(data = americas, aes(x = country.factor, y = both.sexes)) +
   geom_bar(stat = 'identity')

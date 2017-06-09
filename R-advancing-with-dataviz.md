@@ -1,8 +1,13 @@
 Advancing with data visualization in R using `ggplot2`
 ================
 
-**By [Christine Zhang](https://twitter.com/christinezhang) (ychristinezhang at gmail dot com)**<br> *Storytelling with Data Workshop at Boston University (June 8, 2017)*
-<br><br> Data visualization is a popular aspect of R, since R can create sophisticated graphics with (relatively few) lines of code. `ggplot2` is one of the most popular graphics packages. `ggplot2` is named for the **Grammar of Graphics**, a concept first popularized by [Leland Wilkinson](https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448). The `ggplot2` package was developed by [Hadley Wickham](http://hadley.nz/), with the goal of providing a structured approach to graphing. As he wrote in 2012:
+**By [Christine Zhang](https://twitter.com/christinezhang) (ychristinezhang at gmail dot com)**
+*Storytelling with Data Workshop at Boston University (June 8, 2017)*
+<br><br>
+
+\*GitHub repository for Data+Code: <https://github.com/underthecurve/r-dataviz-ggplot2*>
+
+Data visualization is a popular aspect of R, since R can create sophisticated graphics with (relatively few) lines of code. `ggplot2` is one of the most popular graphics packages. `ggplot2` is named for the **Grammar of Graphics**, a concept first popularized by [Leland Wilkinson](https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448). The `ggplot2` package was developed by [Hadley Wickham](http://hadley.nz/), with the goal of providing a structured approach to graphing. As he wrote in 2012:
 
 > "The emphasis in ggplot2 is reducing the amount of thinking time by making it easier to go from the plot in your brain to the plot on the page."
 
@@ -216,7 +221,7 @@ ggplot(life.usa, aes(x = male, y = female)) +
 
 ![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-15-1.png)
 
-This is line that connects the points. But we might want to draw a fitted line instead. We can do this using the `geom_smooth()` layer rather than `geom_line()`:
+This is line that literally connects the points. But we might want to draw a fitted line instead. We can do this using the `geom_smooth()` layer rather than `geom_line()`:
 
 ``` r
 ggplot(life.usa, aes(x = male, y = female)) +
@@ -267,8 +272,6 @@ ggplot(life, aes(x = year, y = both.sexes, group = country)) +
 
 ![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-20-1.png)
 
-The grey bands are standard error bands. In this case, they can be distracting, so we can remove them by setting `se = FALSE` in the `geom_smooth()` layer.
-
 ``` r
 ggplot(life, aes(x = year, y = both.sexes, group = country)) +
 #  geom_point() +
@@ -279,7 +282,7 @@ ggplot(life, aes(x = year, y = both.sexes, group = country)) +
 
 ### Facetted plots
 
-It's hard to see which country is which—especially the country whose life expectancy dipped below 40 in 2010. When we have so many countries, facetting is often a better way to explore the trends in the data. (Warning: the file will take a while to run, and you'll need to zoom in on the plot in R to see it more easily.)
+It's hard to see which country is which—especially the country whose life expectancy dipped below 40 in 2010. When we have so many countries, facetting is often a better way to explore the trends in the data. This way of visualizaing information is also called "small multiples" in data viz lingo. (Warning: the following code will take a while to run, and you'll need to zoom in on the plot in R to see it in full.)
 
 ``` r
 ggplot(life, aes(x = year, y = both.sexes, group = country)) +
@@ -314,11 +317,11 @@ ggplot(data = americas, aes(x = both.sexes, y = country)) +
 
 **What would make this plot look better?**
 
-Right now, R is order from top to bottom in reverse alphbetical order. We want `ggplot2` to order the countries such the the country with the highest life expectancy appears first (on the top), and the country with the lowest appears last (on the bottom).
+Right now, the countries are ordered from top to bottom in reverse alphabetical order. We want `ggplot2` to order the countries such that the country with the highest life expectancy appears first (on the top), and the country with the lowest appears last (on the bottom).
 
-In order to do this, we need to have to create a *factor variable*. Factors are categorical variables, and they can be assigned levels that determine the order they are plotted.
+In order to do this, we need to create a **factor variable**. Factors are categorical variables, and they can be assigned levels that determine the order they are plotted in.
 
-To illustrate what I mean, I'll create a variable, `country.factor`, which is the factor version of the exisiting `country` variable:
+To illustrate what I mean, let's create a variable, `country.factor`, which is the factor version of the existing `country` (character) variable:
 
 ``` r
 class(americas$country) # a character
@@ -333,7 +336,9 @@ class(americas$country.factor) # a factor
 
     ## [1] "factor"
 
-We can see the exist order of items in the factor variable, or the levels, using the `levels()` function:
+We can see the order of items in the factor variable, or the levels, using the `levels()` function. Think of it this way: the countries in `country.factor` are "secretly" numbers deep down, even though they look the same as the countries in `country`.
+
+`levels()` tells us which number is assigned to each country in `country.factor`:
 
 ``` r
 levels(americas$country.factor)
@@ -373,13 +378,18 @@ levels(americas$country.factor)
     ## [32] "Uruguay"                           
     ## [33] "Venezuela (Bolivarian Republic of)"
 
-We want to reorder this factor variable such that the levels according to the `both.sexes` variable. The `forcats` package, another package by Hadley Wickham, makes it easy to to this using the `fct_reorder()` function. Let's create another variable, `country.factor.reorder`, for the reordered factor:
+We see that the default is to assign things alphabetically, so "Antigua and Barbuda" is 1 and "Venezuela (Bolivarian Republic of)" is 33.
+
+**Why are the countries plotted in reverse alphabetical order (from top to bottom) on the y-axis of the `ggplot` graph above?**
+
+We want to reorder the countries in `country.factor` such that they are ranked according to the `both.sexes` variable. This is also called "releveling" the factor variable. The `forcats` package, another package by Hadley Wickham, makes it easy to to this using the `fct_reorder()` function. Let's create another variable, `country.factor.reorder`, for the reordered factor:
 
 ``` r
 # install.pacakges('forcats') #if you don't already have forcats 
 library('forcats') #load forcats package
 
-americas$country.factor.reorder <- fct_reorder(americas$country.factor, americas$both.sexes)
+americas$country.factor.reorder <- fct_reorder(americas$country.factor, # factor variable to reorder
+                                               americas$both.sexes) # variable to reorder it by
 ```
 
 We can check to see that `country.factor.reorder` is indeed reordered by using the `levels()` function on it:
@@ -422,7 +432,7 @@ levels(americas$country.factor.reorder)
     ## [32] "Chile"                             
     ## [33] "Canada"
 
-**How can we check that that worked?**
+**How can we check that that worked? (hint: is the country assigned 1 the one with the lowest 2015 life expectancy in the Americas? Is the country assigned 6 the country with the sixth lowest 2015 life expectancy in the Americas?)**
 
 Now, instead of `y = country` in our `ggplot()` object, let's set `y = country.factor.reorder` and see what happens:
 
@@ -433,12 +443,13 @@ ggplot(data = americas, aes(x = both.sexes, y = country.factor.reorder)) +
 
 ![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-29-1.png)
 
-To save time (and once you're more familiar with factors and the `forcats` library), you can type `y = fct_reorder(country.factor, both.sexes)` within the `ggplot()` object itself.
+To save time (and once you're more familiar with factors and the `forcats` library), you can type `y = fct_reorder(country.factor, both.sexes)` within the `ggplot()` object itself instead of creating a new variable.
 
 Let's save the plot into an object called `p`:
 
 ``` r
-p <- ggplot(data = americas, aes(x = both.sexes, y = fct_reorder(country.factor, both.sexes))) +
+p <- ggplot(data = americas, 
+            aes(x = both.sexes, y = fct_reorder(country.factor, both.sexes))) +
   geom_point()
 
 p
@@ -461,7 +472,8 @@ p + labs(x = 'Life expectancy at birth in 2015, years', y = '')
 We can change the scale of the x-axis by adding a `scale_x_continuous()` layer. Let's say we want the x-axis to start at 50 and go to 100. We do this using `limits = c(60, 100)` within `scale_x_continuous()`:
 
 ``` r
-p + labs(x = 'Life expectancy at birth in 2015, years', y = '') + scale_x_continuous(limits = c(50, 100))
+p + labs(x = 'Life expectancy at birth in 2015, years', y = '') + 
+  scale_x_continuous(limits = c(50, 100))
 ```
 
 ![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-32-1.png)
@@ -608,12 +620,16 @@ p + scale_size_area()
 p <- ggplot(data = gapminder %>% filter(year == 2007), aes(x = gdpPercap, y = lifeExp)) +
   geom_point(aes(size = pop), color = 'blue')
 
-p + scale_size_area(max_size = 10) # max_size = 10 sets the maximum size of the points (in this case, it makes them larger)
+p + scale_size_area(max_size = 10) 
 ```
 
 ![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-43-1.png)
 
-The difference between putting `color = ___` inside or outside of the `aes()` function is that placing it inside makes the color an aesthetic mapping—that is, a color *based on* another variable in the data (in our case, the `continent` variable), and placing int outside makes the color a value in its own right, not tied to a variable in the data (in our case, 'blue'). \[Here\]\](<http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf>) are some more colors in R. Note I added `max_size = 10` in order to make all the points a little bigger.
+``` r
+# max_size = 10 sets the maximum size of the points (in this case, it makes them larger)
+```
+
+The difference between putting `color = ___` inside or outside of the `aes()` function is that placing it inside makes the color an aesthetic mapping—that is, a color *based on* another variable in the data (in our case, the `continent` variable), and placing int outside makes the color a value in its own right, not tied to a variable in the data (in our case, 'blue'). [Here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) are some more colors in R. Note I added `max_size = 10` in order to make all the points a little bigger.
 
 ### The legend
 
@@ -631,7 +647,7 @@ p + scale_size_area(max_size = 10) + theme(legend.position = 'bottom')
 
 In this case, I think the legend should actually go inside the plot, in the bottom right hand corner, since I have some empty space there. **Can you use [this page](https://rpubs.com/folias/A-simple-example-on-ggplot2-legend-options) to figure out how to do this?**
 
-**Exercise: try to figure out how to make the population variable show up in non-scientific notation**
+**Exercise: try to figure out how to make the population variable show up in non-scientific notation (hint: why do you think it shows up in scientific notation in the first place?)**
 
 ### Bar plots
 
