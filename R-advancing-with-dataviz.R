@@ -35,15 +35,15 @@ library('ggplot2') # load the ggplot2 package
 data(Seatbelts)
 s <- as.data.frame(Seatbelts)
 
-# Add in time-series data 
-ts <- data.frame(Year=floor(time(Seatbelts)),
+# Add in data 
+data.seatbelts <- data.frame(Year=floor(time(Seatbelts)),
                  Month=factor(cycle(Seatbelts),
                               labels=month.abb), Seatbelts)
 
 # Now, let's plot the data, using the basic plotting function of ggplot2 
-qplot(data = ts, x = Year, y = DriversKilled, main = 'Drivers Killed by Year')
+qplot(data = data.seatbelts, x = Year, y = DriversKilled, main = 'Drivers Killed by Year')
 
-drivers.plot <- ggplot(data = ts, # the data
+drivers.plot <- ggplot(data = data.seatbelts, # the data
        aes(x = Year, # 'aes' stands for 'aesthetics': what's on the x- and y- axes
            y = DriversKilled))
 
@@ -54,12 +54,12 @@ drivers.plot + geom_point() # adding geometry layer
 drivers.plot + geom_point() + ggtitle('Drivers Killed by Year')
 
 # These produce the exact same plot:
-qplot(data = ts, x = Year, y = DriversKilled, main = 'Drivers Killed by Year')
+qplot(data = data.seatbelts, x = Year, y = DriversKilled, main = 'Drivers Killed by Year')
 
 drivers.plot + 
   geom_text(aes(label = Month)) 
 
-ggplot(data = ts, 
+ggplot(data = data.seatbelts, 
        aes(x = Year, y = DriversKilled)) + 
   geom_point() + 
   ggtitle('Drivers Killed by Year') 

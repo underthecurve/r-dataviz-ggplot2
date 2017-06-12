@@ -5,7 +5,7 @@ Advancing with data visualization in R using `ggplot2`
 *Storytelling with Data Workshop at Boston University (June 8, 2017)*
 <br><br>
 
-\*GitHub repository for Data+Code: <https://github.com/underthecurve/r-dataviz-ggplot2*>
+GitHub repository for Data+Code: <https://github.com/underthecurve/r-dataviz-ggplot2>
 
 Data visualization is a popular aspect of R, since R can create sophisticated graphics with (relatively few) lines of code. `ggplot2` is one of the most popular graphics packages. `ggplot2` is named for the **Grammar of Graphics**, a concept first popularized by [Leland Wilkinson](https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448). The `ggplot2` package was developed by [Hadley Wickham](http://hadley.nz/), with the goal of providing a structured approach to graphing. As he wrote in 2012:
 
@@ -53,8 +53,8 @@ Make the `ts` time-series dataframe:
 data(Seatbelts)
 s <- as.data.frame(Seatbelts)
 
-# Add in time-series data 
-ts <- data.frame(Year=floor(time(Seatbelts)),
+# Add in data 
+data.seatbelts <- data.frame(Year=floor(time(Seatbelts)),
                  Month=factor(cycle(Seatbelts),
                               labels=month.abb), Seatbelts)
 ```
@@ -63,7 +63,7 @@ ts <- data.frame(Year=floor(time(Seatbelts)),
 
 ``` r
 # Now, let's plot the data, using the basic plotting function of ggplot2 
-qplot(data = ts, x = Year, y = DriversKilled, main = 'Drivers Killed by Year')
+qplot(data = data.seatbelts, x = Year, y = DriversKilled, main = 'Drivers Killed by Year')
 ```
 
 ![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-3-1.png)
@@ -73,7 +73,7 @@ Let's try making the same plot using the `ggplot()` function instead of `qplot()
 First, we create the ggplot object. Let's call it `drivers.plot`:
 
 ``` r
-drivers.plot <- ggplot(data = ts, # the data
+drivers.plot <- ggplot(data = data.seatbelts, # the data
        aes(x = Year, # 'aes' stands for 'aesthetics': what's on the x- and y- axes
            y = DriversKilled))
 ```
@@ -123,13 +123,13 @@ Let's review `qplot()` and `ggplot()`:
 
 ``` r
 # These produce the exact same plot:
-qplot(data = ts, x = Year, y = DriversKilled, main = 'Drivers Killed by Year')
+qplot(data = data.seatbelts, x = Year, y = DriversKilled, main = 'Drivers Killed by Year')
 ```
 
 ![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
 ``` r
-ggplot(data = ts, 
+ggplot(data = data.seatbelts, 
        aes(x = Year, y = DriversKilled)) + 
   geom_point() + 
   ggtitle('Drivers Killed by Year') 
@@ -543,6 +543,8 @@ ggsave('plot1.png', plot1 + theme_few())
 ``` r
 ggsave('plot1.png', plot1 + theme_few(), width = 8, height = 6)
 ```
+
+![](R-advancing-with-dataviz_files/figure-markdown_github/unnamed-chunk-37-1.png)
 
 ### Other attributes of ggplot: sizes, scales, colors
 
