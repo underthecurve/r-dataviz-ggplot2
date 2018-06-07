@@ -1,8 +1,10 @@
 # Advancing with data visualization in R using `ggplot2`
 
-Data + Code for **"Advancing with data visualization in R using `ggplot2`"** at the [Storytelling with Data](https://www.bu.edu/com/data-storytelling/) workshop at Boston University on Thursday, June 8th 2017.
+Data + Code for **"Basic data visualization in R"** and **"Advancing with data visualization in R using `ggplot2`"** at the [Data+Narrative](http://www.bu.edu/com/data-narrative/) storytelling workshops at Boston University on Thursday, June 7th 2018.
 
-Equivalent materials for **"Tricks for cleaning your data in R"** available [here](https://github.com/underthecurve/r-data-cleaning-tricks).
+Note the "Advancing with data visualization in R using `ggplot2`" workshop is ~90% the same as a workshop on the same topic I gave at BU last year.
+
+Equivalent materials for **"Tricks for cleaning your data in R"** available, from 2017, are [here](https://github.com/underthecurve/r-data-cleaning-tricks).
 
 ## Links to install R and RStudio
 
