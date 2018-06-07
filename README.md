@@ -32,7 +32,7 @@ The R code for each class, which can be run in RStudio:
 * [R-advancing-with-dataviz.R](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/R-advancing-with-dataviz.R)
 
 ### Underlying data needed to run the R code
-* [boston_weather.csv](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/boston_weather.csv): data on weather in Boston on June 7th (the day of this workshop) from 2007 to 2017, from Weather Underground. See [processing-weather-data.R](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/processing-weather-data.R) for more details.
+* [boston_weather.csv](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/boston_weather.csv): data on weather in Boston on June 7th (the day of this workshop) from 2007 to 2017, from [Weather Underground](https://www.wunderground.com/history/airport/KBOS/2007/6/7/DailyHistory.html?req_city=&req_state=&req_statename=&reqdb.zip=&reqdb.magic=&reqdb.wmo=). See [processing-weather-data.R](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/processing-weather-data.R) for more details.
 
 * [life.csv](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/life.csv): data on life expectancy for each country from 2000 to 2015, from the [World Health Organization](http://apps.who.int/gho/data/view.main.SDG2016LEXv?lang=en)
 
