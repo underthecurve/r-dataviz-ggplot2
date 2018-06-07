@@ -27,7 +27,7 @@ Equivalent materials for **"Tricks for cleaning your data in R"** available, fro
 
 The R code for each class, which can be run in RStudio:
 
-* [R-basic-dataviz.R](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/R-basic-dataviz.R): 
+* [R-basic-dataviz.R](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/R-basic-dataviz.R) 
 
 * [R-advancing-with-dataviz.R](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/R-advancing-with-dataviz.R)
 
