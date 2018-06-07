@@ -21,7 +21,7 @@ Equivalent materials for **"Tricks for cleaning your data in R"** available, fro
 
 * [R-advancing-with-dataviz.md](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/R-advancing-with-dataviz.md): Markdown file (for viewing on the web)
 
-* [R-advancing-with-dataviz.pdf](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/R-basic-dataviz.pdf): PDF file (for printing out)
+* [R-advancing-with-dataviz.pdf](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/R-advancing-with-dataviz.pdf): PDF file (for printing out)
 
 ### R code
 
