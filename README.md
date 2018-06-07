@@ -15,18 +15,26 @@ Equivalent materials for **"Tricks for cleaning your data in R"** available, fro
 
 ### Annotated code and step-by step instructions for the workshop
 
-* [R-basic-dataviz.md](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/R-advancing-with-dataviz.md): Markdown file (for viewing on the web)
+* [R-basic-dataviz.md](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/R-basic-dataviz.md): Markdown file (for viewing on the web)
 
-* [R-basic-dataviz.pdf](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/R-advancing-with-dataviz.pdf): PDF file (for printing out)
+* [R-basic-dataviz.pdf](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/R-basic-dataviz.pdf): PDF file (for printing out)
 
 * [R-advancing-with-dataviz.md](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/R-advancing-with-dataviz.md): Markdown file (for viewing on the web)
+
 * [R-advancing-with-dataviz.pdf](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/R-basic-dataviz.pdf): PDF file (for printing out)
 
 ### R code
-* [R-advancing-with-dataviz.R](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/R-advancing-with-dataviz.R): the R code, which can be run in RStudio
+
+The R code for each class, which can be run in RStudio:
+
+* [R-basic-dataviz.R](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/R-basic-dataviz.R): 
+
+* [R-advancing-with-dataviz.R](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/R-advancing-with-dataviz.R)
 
 ### Underlying data needed to run the R code
-* [life.csv](xxxxx): data on life expectancy for each country from 2000 to 2015, from the [World Health Organization](http://apps.who.int/gho/data/view.main.SDG2016LEXv?lang=en)
+* [boston_weather.csv](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/boston_weather.csv): data on weather in Boston on June 7th (the day of this workshop) from 2007 to 2017, from Weather Underground. See [processing-weather-data.R](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/processing-weather-data.R) for more details.
+
+* [life.csv](https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/life.csv): data on life expectancy for each country from 2000 to 2015, from the [World Health Organization](http://apps.who.int/gho/data/view.main.SDG2016LEXv?lang=en)
 
 ## How to follow this workshop
 
