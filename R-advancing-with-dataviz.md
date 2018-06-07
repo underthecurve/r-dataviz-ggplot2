@@ -1,9 +1,15 @@
-Advancing with data visualization in R using `ggplot2`
-================
+---
+title: "Advancing with data visualization in R using `ggplot2`"
+output:
+  html_document:
+    keep_md: yes
+---
 
-**By [Christine Zhang](https://twitter.com/christinezhang) (ychristinezhang at gmail dot com and @christinezhang on Twitter)**
+
+
+**By [Christine Zhang](https://twitter.com/christinezhang) (ychristinezhang at gmail dot com and @christinezhang on Twitter)**     
 *Data + Narrative Workshop at Boston University (June 7, 2018)*  
-<br><br>
+<br>
 
 GitHub repository for Data+Code: https://github.com/underthecurve/r-dataviz-ggplot2
 
