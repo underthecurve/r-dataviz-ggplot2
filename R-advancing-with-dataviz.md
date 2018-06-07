@@ -453,11 +453,10 @@ We see that the default is to assign things alphabetically, so "Antigua and Barb
 
 **Why are the countries plotted in reverse alphabetical order (from top to bottom) on the y-axis of the `ggplot` graph above?**
 
-We want to reorder the countries in `country.factor` such that they are ranked according to the `both sexes` variable. This is also called "releveling" the factor variable. The `forcats` package, another package by Hadley Wickham, makes it easy to to this using the `fct_reorder()` function. Let's create another variable, `country.factor.reorder`, for the reordered factor:
+We want to reorder the countries in `country.factor` such that they are ranked according to the `both sexes` variable. This is also called "releveling" the factor variable. The `forcats` package, another package included in the `tidyverse` set of packages, makes it easy to to this using the `fct_reorder()` function. Let's create another variable, `country.factor.reorder`, for the reordered factor:
 
 
 ```r
-# install.pacakges('forcats') #if you don't already have forcats 
 library('forcats') #load forcats package
 
 americas$country.factor.reorder <- fct_reorder(americas$country.factor, # factor variable to reorder
@@ -631,7 +630,7 @@ ggsave('plot1.png', plot1 + theme_few(), width = 8, height = 6)
 
 ### Other attributes of ggplot: sizes, scales, colors
 
-Let's use the `gapminder` package to load in a different slice of the life expectancy data, GDP per capita, and population by country. Find out more about Gapminder [here](http://www.gapminder.org/data/) and if you haven't seen it already, take some time to watch founder Hans Rosling's TED talk, ["The best stats you've ever seen"](https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen).
+Let's use the `gapminder` package to load in a different slice of the life expectancy data, GDP per capita, and population by country. Find out more about Gapminder [here](http://www.gapminder.org/data/): http://www.gapminder.org/data/. And if you haven't seen it already, take some time to watch founder Hans Rosling's TED talk, ["The best stats you've ever seen"](https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen): https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen. I'd also encourage you to check out ["Factfulness"](https://www.gapminder.org/factfulness-book/), a book written by the late Rosling and his family members/collaborators.
 
 
 ```r

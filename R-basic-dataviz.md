@@ -48,7 +48,7 @@ library('tidyverse') # load the tidyverse package
 
 ### Today is June 7th, 2018. Let's take a look at the Boston weather on June 7th over the past decade or so.
 
-Let's load in a data file, `boston_weather.csv`, of hourly Boston weather from 2007-2017, using the `read_csv` command (part of the `tidyverse`). These historical weather figures have been obtained from Weather Underground. For more information on how I got the data from the website, see the `processing-weather-data.R` file. We'll call the dataframe `boston.weather`.
+Let's load in a data file, `boston_weather.csv`, of hourly Boston weather from 2007-2017, using the `read_csv()` command (part of the `tidyverse`). These historical weather figures have been obtained from Weather Underground. For more information on how I got the data from the website, see the `processing-weather-data.R` file. We'll call the dataframe `boston.weather`.
 
 
 ```r
@@ -97,7 +97,7 @@ The `boston.weather` data provides hourly temperatures (note these are in 24-hou
 
 https://www.wunderground.com/history/airport/KBOS/2007/6/7/DailyHistory.html?req_city=&req_state=&req_statename=&reqdb.zip=&reqdb.magic=&reqdb.wmo=
 
-Here's a simple way to make a bar plot of the `temp` variable in the `boston.weather` every temperature in the data.
+Here's a simple way to make a bar plot of the `temp` variable in the `boston.weather` -- every temperature in the data.
 
 
 ```r
@@ -108,7 +108,7 @@ barplot(boston.weather$temp)
 
 This is okay for a quick look, but it's not very informative. Each hour is on the x-axis and the temperature for that hour is on the y-axis. The data are plotted in the order that they appear in the dataframe.
 
-Instead, let's plot just the highest temperature for each year. We will use the `dplyr` package (also included in the `tidyverse`) to do this. `dplyr` is a great tool for cleaning data in R. If you'd like to learn more about the syntax of `dplyr`, [here](https://github.com/underthecurve/r-data-cleaning-tricks) are the materials from my workshop last year, "Tricks for cleaning your data in R."
+Instead, let's plot just the highest temperature for each year. We will use the `dplyr` package (also included in the `tidyverse`) to do this. `dplyr` is a great tool for cleaning data in R. If you'd like to learn more about the syntax of `dplyr`, [here](https://github.com/underthecurve/r-data-cleaning-tricks) are the materials from my workshop last year, "Tricks for cleaning your data in R": https://github.com/underthecurve/r-data-cleaning-tricks
 
 Let's call this new dataframe with the maximum temperatures between 2007 and 2017 `boston.weather.max`.
 
@@ -147,7 +147,7 @@ barplot(boston.weather.max$max.temp)
 
 ![](R-basic-dataviz_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
 
-Notice how there are no x-axis labels, which is not particularly helpful in this case. We can add them using `names.arg`:
+Notice how there are no x-axis labels, which is not particularly helpful in this case. We can add them using `names.arg = `:
 
 
 ```r
@@ -157,7 +157,7 @@ barplot(boston.weather.max$max.temp,
 
 ![](R-basic-dataviz_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
 
-If you're like me, you may be bothered by the fact the y-axis labels end at 80, but the temperatures in the data don't. For example, in 2008, the max temperature was 91.9. We can adjust the y-axis limits using `ylim`. Let's make the y-axis go up to 100:
+If you're like me, you may be bothered by the fact the y-axis labels end at 80, but the temperatures in the data don't. For example, in 2008, the max temperature was 91.9. We can adjust the y-axis limits using `ylim = `. Let's make the y-axis go up to 100:
 
 
 ```r
@@ -167,26 +167,6 @@ barplot(boston.weather.max$max.temp,
 ```
 
 ![](R-basic-dataviz_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-
-```r
-summary(cars)
-```
-
-```
-##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00
-```
 
 ### Line plot
 
@@ -247,6 +227,8 @@ This plot is ... not great. Why not?
 
 Let's fix the y-axis limits first. **How can we decide what these limits should be?**
 
+Highlight the following code and run it all at once:
+
 
 ```r
 plot(x = boston.weather.max$year, 
@@ -262,7 +244,9 @@ lines(x = boston.weather.min$year,
 
 ![](R-basic-dataviz_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
 
-Maybe we also want the max and min to be different colors. We can do this with `col`. [Here's](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) a guide to how colors are named in R.
+Maybe we also want the max and min to be different colors. We can do this with `col`. [Here's](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) a guide to how colors are named in R: http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
+
+Highlight the following code and run it all at once:
 
 
 ```r
@@ -281,9 +265,9 @@ lines(x = boston.weather.min$year,
 
 ![](R-basic-dataviz_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
 
-We can also add a legend to our plot but this is a bit cumbersome in base R, so I'd encourage you to stick around for the next class on `ggplot2` :)
+We can also add a legend to our plot but this is a bit cumbersome in base R, so I'd encourage you to stick around for the next class, "Advancing with data viz in R using ggplot2": https://github.com/underthecurve/r-dataviz-ggplot2/blob/master/R-advancing-with-dataviz.md
 
-In any case, let's take a look at the `legend()` function:
+For now, let's take a look at the `legend()` function:
 
 
 ```r
@@ -291,6 +275,8 @@ In any case, let's take a look at the `legend()` function:
 ```
 
 **What should the arguments inside of `legend()` be?**
+
+Highlight the following code and run it all at once:
 
 
 ```r
@@ -314,6 +300,8 @@ legend(2014, 100,
 
 We might also want to create a scatterplot to see if there is a correlation between the lowest and highest temperature for each year. For example, do years with low minimum temperatures also have low maximum temperatures?
 
+### Scatter plot
+
 The `plot()` function by default creates a scatter plot.
 
 
@@ -325,6 +313,8 @@ plot(x = boston.weather.min$min.temp,
 ![](R-basic-dataviz_files/figure-html/unnamed-chunk-18-1.png)<!-- -->
 
 We can draw the straight line that best fits the relationship between these two variables. In order to do this, we can use `abline()`, a function that adds straight lines to a plot, in combination with an additional argument, `lm()`, which stands for "linear model." We have to tell R that `boston.weather.max$max.temp` is our y-variable (aka "outcome" variable) and `boston.weather.min$min.temp` is our x variable (aka "input" variable) for the regression.
+
+Highlight the following code and run it all at once:
 
 
 ```r
@@ -398,7 +388,7 @@ head(boston.weather)
 ## # ... with 1 more variable: day <int>
 ```
 
-We could plot a histogram of `temp` using `hist`, which would give a sense of the most common temperatures in the data.
+We could plot a histogram of `temp` using `hist()`, which would give a sense of the most common temperatures in the data.
 
 
 ```r
@@ -413,7 +403,7 @@ This is nice--we can see that most of the time on June 7th, hourly temperatures 
 
 ### Boxplot
 
-I really like boxplots. [Here](https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data/box-whisker-plots/a/box-plot-review) is a good article from Khan Academy that reviews what boxplots do. Basically, they provide a summary of the range of values: not only the min and the max, but also the first quartile, the median, and the third quartiles. [Here](https://www.nytimes.com/interactive/2018/06/05/opinion/columnists/what-college-really-costs.html) is a piece in the Opinion section of the *New York Times*, about the cost of college, with an excellent series of boxplots right up top.
+I really like boxplots. [Here](https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data/box-whisker-plots/a/box-plot-review) is a good article from Khan Academy that reviews what boxplots do: https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data/box-whisker-plots/a/box-plot-review. Basically, boxplots provide a summary of the range of values: not only the min and the max, but also the first quartile, the median, and the third quartiles. [Here](https://www.nytimes.com/interactive/2018/06/05/opinion/columnists/what-college-really-costs.html) is a piece in the Opinion section of the *New York Times*, about the cost of college, with an excellent series of boxplots right up top: https://www.nytimes.com/interactive/2018/06/05/opinion/columnists/what-college-really-costs.html.
 
 Let's make boxplots of the hourly temperature for each year.
 

@@ -1,4 +1,4 @@
-# Advancing with data visualization in R using `ggplot2`
+# Data visualization in R: base R and `ggplot2`
 
 Data + Code for **"Basic data visualization in R"** and **"Advancing with data visualization in R using `ggplot2`"** at the [Data+Narrative](http://www.bu.edu/com/data-narrative/) storytelling workshops at Boston University on Thursday, June 7th 2018.
 
