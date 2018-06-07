@@ -44,6 +44,9 @@ The R code for each class, which can be run in RStudio:
 
 ## Additional resources
 
+* [Visual Vocabulary](https://github.com/ft-interactive/chart-doctor/tree/master/visual-vocabulary) by the *Financial Times*
+* [The Data Visualisation Catalogue](https://datavizcatalogue.com/index.html) by Severino Ribecca
+* [On Graphonyms: the Importance of Chart Type Names](https://xeno.graphics/articles/on-graphonyms-the-importance-of-chart-type-names/)
 * [“A Simple Introduction to the Graphing Philosophy of ggplot2”](https://tomhopper.me/2014/03/28/a-simple-introduction-to-the-graphing-philosophy-of-ggplot2/) by Tom Hopper
 * [ggplot2 Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf) by RStudio
 * [ggplot2 Documentation](http://docs.ggplot2.org/current/) by Hadley Wickham & Winston Chang

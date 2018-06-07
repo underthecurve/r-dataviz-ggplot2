@@ -32,7 +32,7 @@ What are some common chart types?
 
 When do you think you should (or should not) use each of these chart types? 
 
-The *Financial Times* [Visual Vocabulary](https://github.com/ft-interactive/chart-doctor/tree/master/visual-vocabulary) is a good guide to different chart types and how to use them.
+The *Financial Times* [Visual Vocabulary](https://github.com/ft-interactive/chart-doctor/tree/master/visual-vocabulary) is a good guide to different chart types and how to use them: https://github.com/ft-interactive/chart-doctor/tree/master/visual-vocabulary. The [Data Visualisation Catalogue](https://datavizcatalogue.com/index.html) by Severino Ribecca is another one: https://datavizcatalogue.com/index.html. Basically all the resources listed under [this blog post](https://xeno.graphics/articles/on-graphonyms-the-importance-of-chart-type-names/) by Maarten Lambrechts are great: https://xeno.graphics/articles/on-graphonyms-the-importance-of-chart-type-names/.
 
 In this class, we'll mainly use R's built-in graphics tool to take a look at the above common chart types. The next class, "Advancing with data visualization in R using `ggplot2`", will provide an overview of [`ggplot2`](http://ggplot2.tidyverse.org/) (which stands for the "grammar of graphics"), a popular R package for visualizing data.
 
