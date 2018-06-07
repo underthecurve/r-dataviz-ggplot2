@@ -17,11 +17,11 @@ Data visualization is a popular aspect of R, since R can create sophisticated gr
 
 > "The emphasis in ggplot2 is reducing the amount of thinking time by making it easier to go from the plot in your brain to the plot on the page."
 
-You can read more about the Grammar of Graphics philosophy [here](A Layered Grammar of Graphics).
+You can read more about the Grammar of Graphics philosophy [here](http://vita.had.co.nz/papers/layered-grammar.html): http://vita.had.co.nz/papers/layered-grammar.html
 
 One of the advantages of `ggplot2` is its versatility in creating different types of graphs. This is important because good data visualization involves making the best choices for showcasing a given dataset. Depending on the question you're trying to answer, these choices could be very different, even if you have the same data.
 
-*FlowingData* blogger and statistician Nathan Yau made this point with a post earlier this year called ["One Dataset, Visualized 25 Ways"](http://flowingdata.com/2017/01/24/one-dataset-visualized-25-ways/) (January 24, 2017). He took World Health Organization data on life expectancy by country from 2000 to 2015 and produced 25 different charts (some more useful than others). The blog post was also covered by *Wired* magazine in an article, "25 Visualizations Spin the Same Data Into 25 Different Tales" (February 9, 2017), which you can read [here](https://www.wired.com/2017/02/25-visualizations-spin-data-25-different-tales/).
+*FlowingData* blogger and statistician Nathan Yau made this point with a post earlier this year called ["One Dataset, Visualized 25 Ways"](http://flowingdata.com/2017/01/24/one-dataset-visualized-25-ways/) (January 24, 2017). He took World Health Organization data on life expectancy by country from 2000 to 2015 and produced 25 different charts (some more useful than others). The blog post was also covered by *Wired* magazine in an article, "25 Visualizations Spin the Same Data Into 25 Different Tales" (February 9, 2017), which you can read [here](https://www.wired.com/2017/02/25-visualizations-spin-data-25-different-tales/): https://www.wired.com/2017/02/25-visualizations-spin-data-25-different-tales/
 
 In this workshop, we will:
 
@@ -176,43 +176,6 @@ life <- read_csv('life.csv')
 ## )
 ```
 
-```r
-str(life)
-```
-
-```
-## Classes 'tbl_df', 'tbl' and 'data.frame':	2944 obs. of  8 variables:
-##  $ year        : int  2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 ...
-##  $ region.code : chr  "AFR" "AFR" "AFR" "AFR" ...
-##  $ region      : chr  "Africa" "Africa" "Africa" "Africa" ...
-##  $ country.code: chr  "AGO" "BDI" "BEN" "BFA" ...
-##  $ country     : chr  "Angola" "Burundi" "Benin" "Burkina Faso" ...
-##  $ both sexes  : num  45.3 50.8 55.4 50.1 47.8 ...
-##  $ female      : num  46.8 53 56.6 51.3 47.7 ...
-##  $ male        : num  43.8 48.6 54 48.8 47.9 ...
-##  - attr(*, "spec")=List of 2
-##   ..$ cols   :List of 8
-##   .. ..$ year        : list()
-##   .. .. ..- attr(*, "class")= chr  "collector_integer" "collector"
-##   .. ..$ region.code : list()
-##   .. .. ..- attr(*, "class")= chr  "collector_character" "collector"
-##   .. ..$ region      : list()
-##   .. .. ..- attr(*, "class")= chr  "collector_character" "collector"
-##   .. ..$ country.code: list()
-##   .. .. ..- attr(*, "class")= chr  "collector_character" "collector"
-##   .. ..$ country     : list()
-##   .. .. ..- attr(*, "class")= chr  "collector_character" "collector"
-##   .. ..$ both sexes  : list()
-##   .. .. ..- attr(*, "class")= chr  "collector_double" "collector"
-##   .. ..$ female      : list()
-##   .. .. ..- attr(*, "class")= chr  "collector_double" "collector"
-##   .. ..$ male        : list()
-##   .. .. ..- attr(*, "class")= chr  "collector_double" "collector"
-##   ..$ default: list()
-##   .. ..- attr(*, "class")= chr  "collector_guess" "collector"
-##   ..- attr(*, "class")= chr "col_spec"
-```
-
 We can take a look at the data using `head()`:
 
 
@@ -357,7 +320,7 @@ What do we see in this plot (the zoomed in one on RStudio, not the one you actua
 
 ### Reordering a plot
 
-Haiti stands out. Take a look at the WHO metadata for life expectancy [here](http://apps.who.int/gho/data/node.wrapper.imr?x-id=65) as well as an alternative source, the [World Bank](http://data.worldbank.org/indicator/SP.DYN.LE00.IN?end=2015&locations=HT&start=2010&year_low_desc=true). Also [this paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2862993/) on the HIV epidemic and the 2010 earthquake in Haiti.
+Haiti stands out. Take a look at the WHO metadata for life expectancy [here](http://apps.who.int/gho/data/node.wrapper.imr?x-id=65) http://apps.who.int/gho/data/node.wrapper.imr?x-id=65 as well as an alternative source, the [World Bank](http://data.worldbank.org/indicator/SP.DYN.LE00.IN?end=2015&locations=HT&start=2010&year_low_desc=true): http://data.worldbank.org/indicator/SP.DYN.LE00.IN?end=2015&locations=HT&start=2010&year_low_desc=true. Also [this paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2862993/) on the HIV epidemic and the 2010 earthquake in Haiti: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2862993/
 
 Let's see how Haiti in 2015 compares to the rest of the countries in the region. First, let's create a new dataframe, `americas`, for the countries within the Americas region.
 
@@ -506,7 +469,7 @@ levels(americas$country.factor.reorder)
 ## [33] "Canada"
 ```
 
-**How can we check that that worked? (hint: is the country assigned 1 the one with the lowest 2015 life expectancy in the Americas? Is the  country assigned 6 the country with the sixth lowest 2015 life expectancy in the Americas?)**
+**How can we check that that worked? (hint: is the country assigned 1 the one with the lowest 2015 life expectancy in the Americas? Is the country assigned 6 the country with the sixth lowest 2015 life expectancy in the Americas?)**
 
 Now, instead of `y = country` in our `ggplot()` object, let's set `y = country.factor.reorder` and see what happens:
 
